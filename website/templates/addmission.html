@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='style.css') }}">
+    <title>Admission । Chandpur MAK Memorial School and Collage</title>
+    
+</head>
+<body>
+
+        <header>
+            <div class="header">
+                <img type="" src="{{ url_for('static', filename='Name___Logo-removebg-preview.png') }}"  alt="" class="imagess">
+                <h1>Chandpur M A Khaleque Memorial School and Collage</h1>
+                
+            </div>
+            <nav>
+                <a href="/form"><button id="result" class="button">Add Student</button></a>
+                <a href="{{ url_for('display_students') }}"><button id="addStudent" class="button">Student List</button></a>
+                <a href="/logout"><button class="button">Log Out</button></a>
+                
+            </nav>
+        </header>
+        <div class="student">
+            <div class="rs">
+                Registered Students: <span id="reg-stu">{{ registered_students_count }}</span>
+            </div>
+
+        </div>
+        <section class="everything">
+            <h2 class="addmission">Addmission</h2>
+            <form action="/submit" method="post" id="form" class="inputs" enctype="multipart/form-data">
+                <div class="EIIN">
+                    <b><p>EIIN: 103789</p></b> 
+                </div>
+                <div class="id">
+                    <h2 class="si">Student Information</h2>
+                    <div class="iodhas">
+                        <label for="ID" class="s-id">Student ID:</label>
+                        <input name="students_id" id="student_id" type="text" value="00000000000" readonly>
+                    </div>
+                </div>
+                <div class="sb">
+
+                    <label for="reg">Birth Registration No:</label>
+                    <input type="text" name="reg" id="birth-reg" required>
+                </div>
+                <div class="ycsr">
+                    <div>
+                        <label for="year">Year:</label>
+                        <select name="year" id="year" required>
+                            <option value="">Choose</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
+                            <option value="2029">2029</option>
+                            <option value="2030">2030</option>
+                            <option value="2031">2031</option>
+                            <option value="2032">2032</option>
+                            <option value="2033">2033</option>
+                            <option value="2034">2034</option>
+                            <option value="2035">2035</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="calss">Class:</label>
+                        <select id="class" name="calss" required>
+                            <option value="">Choose</option>
+                            <option value="06">6</option>
+                            <option value="07">7</option>
+                            <option value="08">8</option>
+                            <option value="09">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="section">Section</label>
+                        <select name="section" id="section" required>
+                            <option value="">Choose</option>
+                            <option value="01">ক</option>
+                            <option value="02">খ</option>
+                            <option value="03">গ</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="roll">Roll No:</label>
+                        <input name="roll" type="number" id="roll" required>
+                    </div>
+                </div>
+                <div class="ndgrp">
+                    <div class="nameofstudent">
+                        <div>
+                            <label for="s_name_en" class="s_name_en">Student Name (en):</label>
+                            <input type="text" name="s_name_en" id="s_name_en" required>
+                        </div>
+                        <div>
+                            <label for="s_name_bn" class="s_name_bn">Student Name (bn):</label>
+                            <input type="text" name="s_name_bn" id="s_name_bn" oninput="validateBengaliInput(this)" required>
+                        </div>
+                    </div>
+                    <div class="nameoffather">
+                        <div>
+                            <label for="f_name_en" class="f_name_en">Father's Name (en):</label>
+                            <input type="text" name="f_name_en" id="f_name_en" required>
+                        </div>
+                        <div>  
+                            <label for="f_name_bn" class="s_name_bn">Father's Name (bn):</label>
+                            <input type="text" name="f_name_bn" id="f_name_bn" required>
+                        </div>
+                    </div>
+                    <div class="nameofmother">
+                        <div>
+                            <label for="m_name_en" class="m_name_en">Mother's Name (en):</label>
+                            <input type="text" name="m_name_en" id="m_name_en" required>
+                        </div>
+                        <div>
+                            <label for="m_name_bn" class="s_name_bn">Mother's Name (bn):</label>
+                            <input type="text" name="m_name_bn" id="m_name_bn" required>
+                        </div>
+                    </div>
+                    <div class="dgrd">
+                        <div>
+                            <label for="dob" class="dob">Date of Birth:</label>
+                            <input type="date" name="dob" id="dob" min="2005-01-01" max="2012-12-31" required >
+                        </div>
+                        <div>
+                            <label for="gender">Gender: </label>
+                            <select name="gender" id="gender" required>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Custom">custom</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="Religion" >Religion:</label>
+                            <select name="Religion" id="religion" required>
+                                <option value="">Choose</option>
+                                <option value="Islam">Islam</option>
+                                <option value="Hindu">Hindu</option>
+                                <option value="Christian">Christian</option>
+                                <option value="Boddha">Boddha</option>
+                            </select>
+                        </div>
+                        <div class="disability-part" >
+                            <label for="disability">Disability:</label>
+                            <select name="disability" id="disability" required>
+                                <option value="no">NO</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                            <div class="nameofdis"  id="wDo" style="display: none;">
+                                <label for="dis_part">Name of Disability:</label>
+                                <input name="dis_part" type="text" id="which-disability">
+                            </div>
+                        </div>
+                        <div class="image">
+                            <label for="photo">Photo:</label>
+                            <input type="file" name="photo" accept="image/*" onchange="previewImage(event)"><br>
+                            <img src="" alt="" id="imagePreview">
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                <div class="reg-sub">
+                    <h2 class="si">Subjects</h2>
+                    <div class="qp">
+                        <h4>Compulsery Subjects:</h4>
+                        <div class="sub" id="subject">
+                            <div class="subject">
+                                <p>BANGLA - <span class="subject-code">101</span></p>
+                            </div>
+                            <div class="subject">
+                                <p>ENGLISH - <span class="subject-code">107</span></p>
+                            </div>
+                            <div class="subject">
+                                <p>MATHEMATICS - <span class="subject-code">109</span></p>
+                            </div>
+                            <div class="subject">
+                                <p>SCIENCE - <span class="subject-code">127</span></p>
+                            </div>
+                            <div class="subject">
+                                <p>ART AND CULTURE - <span class="subject-code">148</span></p>
+                            </div>
+                            <div class="subject">
+                                <p>HISTORY AND SOCIAL SCIENCE - <span class="subject-code">153</span></p>
+                            </div>
+                            <div class="subject">
+                                <p>DIGITAL TECHNOLOGY - <span class="subject-code">154</span></p>
+                            </div>
+                            <div class="subject">
+                                <p>LIVE AND LIVELIHOOD - <span class="subject-code">155</span></p>
+                            </div>
+                            <div class="subject">
+                                <p>WELLBEING - <span class="subject-code">157</span></p>
+                            </div>
+                            <div class="subject">
+                                <p><span id="reli">Religion - </span> <span id="subject-code-of-reli" class="subject-code"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <section class="contact">
+                    <h2 class="si">Contact</h2>
+                    <div class="phonenumber">
+                        <label for="number">Guardian Phone Number:</label>
+                        <input type="number" name="number" id="phonenumber" required>
+                    </div>
+                    <div class="location">
+                        <div>
+                            <label for="vi">Village:</label>
+                            <input name="vi" type="text" id="village">
+                        </div>
+                        <div>
+                            <label for="post">Post Office:</label>
+                            <input name="post" type="text" id="postoffice">
+                        </div>
+                        <div>
+                            <label for="upazilla">Upazilla:</label>
+                            <input name="upazilla" type="text" id="upazilla">
+                        </div>
+                        <div>
+                            <label for="district">District:</label>
+                            <input name="district" type="text" id="district">
+                        </div>
+                    </div>
+                </section>
+
+                <div class="buttons">
+                    <button id="preview" onclick="previewForm()">Preview</button>
+                    <button id="submit" onclick="submitForm()">Submit</button>
+                    <button id="cancel" onclick="cancelForm()">Cancel</button>
+                </div>
+
+            </form>
+
+
+        </section>
+
+        
+
+    <script>
+        var input = document.getElementById('file-img');
+var displayedImage = document.getElementById('img');
+var subject = document.getElementById('subject');
+var religionSelect = document.getElementById('religion');
+var reliSpan = document.getElementById('reli');
+var subjectCodeSpan = document.getElementById('subject-code-of-reli');
+var year = document.getElementById('year');
+var calss = document.getElementById('class');
+var section = document.getElementById('section');
+var roll = document.getElementById('roll');
+
+document.getElementById('class').addEventListener('change', function() {
+    subject.style.display = 'block';
+});
+
+
+religionSelect.addEventListener('change', function() {
+    // Check the selected value and update the text accordingly
+    
+    var selectedValue = religionSelect.value;
+
+    switch (selectedValue) {
+        case 'Islam':
+            reliSpan.textContent = 'Religion - Islam';
+            subjectCodeSpan.textContent = '111';
+            break;
+        case 'Hindu':
+            reliSpan.textContent = 'Religion - Hindu';
+            subjectCodeSpan.textContent = '112';
+            break;
+        case 'Christian':
+            reliSpan.textContent = 'Religion - Christian';
+            subjectCodeSpan.textContent = '113';
+            break;
+        case 'Buddha':
+            reliSpan.textContent = 'Religion - Buddha';
+            subjectCodeSpan.textContent = '114';
+            break;
+        default:
+            reliSpan.textContent = 'Invalid Selection';
+            subjectCodeSpan.textContent = '';
+    }
+});
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+            // Get references to the dropdowns and input field
+            var yearDropdown = document.getElementById("year");
+            var classDropdown = document.getElementById("class");
+            var sectionDropdown = document.getElementById("section");
+            var rollInput = document.getElementById("roll");
+            var studentIdInput = document.getElementById("student_id");
+            var phoneNumber = document.getElementById("phonenumber");
+
+            // Add input event listeners to the roll number input
+            phoneNumber.addEventListener("input", updateStudentId);
+
+            // Function to update the student ID based on selected values
+            function updateStudentId() {
+                // Get selected values from the dropdowns and input
+                var selectedYear = yearDropdown.value;
+                var selectedClass = classDropdown.value;
+                var selectedSection = sectionDropdown.value;
+                var enteredRoll = rollInput.value;
+
+                // Calculate the total by adding selected values
+                var total = selectedYear + selectedClass + selectedSection + enteredRoll;
+
+                // Format the student ID based on the total and entered roll number
+                var formattedStudentId = total.toString().padStart(4, '0');
+
+                // Update the student ID input field
+                studentIdInput.value = formattedStudentId;
+            }
+        });
+function cancelForm() {
+    var userResponse = window.confirm("Are you sure you want to cancel this form?");
+
+if (userResponse) {
+    // User clicked "OK" in the confirmation dialog
+    // Execute the next code here
+    location.reload()
+} else {
+    // User clicked "Cancel" in the confirmation dialog
+    // Do something else or stop execution
+    console.log("User clicked Cancel. Not executing next code.");
+}
+}
+function previewImage(event) {
+            // Get the file input element
+            const input = event.target;
+
+            // Ensure that a file was selected
+            if (input.files && input.files[0]) {
+                // Get the selected file
+                const file = input.files[0];
+
+                // Create a FileReader
+                const reader = new FileReader();
+
+                // Set the callback function when the FileReader finishes reading
+                reader.onload = function(e) {
+                    // Set the src attribute of the image element to the data URL of the loaded image
+                    document.getElementById('imagePreview').src = e.target.result;
+                };
+
+                // Read the selected file as a data URL
+                reader.readAsDataURL(file);
+            }
+        }
+        
+
+        var disabilityInput = document.getElementById('disability');
+        var wD = document.getElementById('which-disability');
+        var wDo = document.getElementById('wDo');
+        disabilityInput.addEventListener('input', dis);
+
+        function dis() {
+            var disability = disabilityInput.value;
+
+            if (disability === 'yes') {
+                wD.name = "disability";
+                disabilityInput.name = "dis_part";
+                wDo.style.display = 'inline-block';
+            } else {
+                wD.name = "dis_part";
+                disabilityInput.name = "disability";
+                wDo.style.display = 'none';
+            }
+        };
+
+
+    </script>
+</body>
+</html>
